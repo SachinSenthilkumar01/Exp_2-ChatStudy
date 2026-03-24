@@ -73,6 +73,76 @@ Client-server chat applications are versatile tools that facilitate real-time co
 
 Client-server chat applications are foundational to real-time communication over networks. They incorporate principles of socket programming, communication protocols, and security mechanisms to provide a seamless user experience. Understanding the basics of client-server chat applications is essential for developers involved in networked application development, as they form the backbone of various collaborative communication systems. As technology evolves, chat applications continue to adapt, incorporating new features and technologies to enhance user interaction and connectivity.
 
+Program:
+Server:
+import socket
+
+# Create socket
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Bind socket to IP and port
+host = '127.0.0.1'
+port = 12345
+server_socket.bind((host, port))
+
+# Listen for connections
+server_socket.listen(1)
+print("Server is waiting for connection...")
+
+# Accept client connection
+conn, addr = server_socket.accept()
+print("Connected to:", addr)
+
+# Chat loop
+while True:
+    # Receive data from client
+    data = conn.recv(1024).decode()
+    if not data:
+        print("Client disconnected.")
+        break
+    print("Client says:", data)
+    
+    # Send response to client
+    message = input("Server: ")
+    if message.lower() == 'quit':
+        print("Ending chat.")
+        break
+    conn.send(message.encode())
+
+# Close connection
+conn.close()
+server_socket.close()
+Client:
+import socket
+
+# Create socket
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Connect to server
+host = '127.0.0.1'
+port = 12345
+client_socket.connect((host, port))
+
+print("Connected to server. Type 'quit' to exit.")
+
+while True:
+    message = input("You: ")
+    if message.lower() == 'quit':
+        break
+    client_socket.send(message.encode())
+    data = client_socket.recv(1024).decode()
+    print("Server:", data)
+
+# Close socket
+client_socket.close()
+
+Output:
+Server:
+<img width="1920" height="1080" alt="Screenshot (55)" src="https://github.com/user-attachments/assets/e82f040d-97b0-423c-acb3-d949fd82ec51" />
+Client:
+<img width="1920" height="1080" alt="Screenshot (56)" src="https://github.com/user-attachments/assets/20f8f1e9-5b6b-4951-bc5c-4666b508e357" />
+
+
 
 ## Result:
 
