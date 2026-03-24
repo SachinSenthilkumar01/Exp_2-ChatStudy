@@ -75,6 +75,7 @@ Client-server chat applications are foundational to real-time communication over
 
 Program:
 Server:
+```
 import socket
 
 # Create socket
@@ -135,7 +136,7 @@ while True:
 
 # Close socket
 client_socket.close()
-
+```
 Output:
 Server:
 <img width="1920" height="1080" alt="Screenshot (55)" src="https://github.com/user-attachments/assets/e82f040d-97b0-423c-acb3-d949fd82ec51" />
