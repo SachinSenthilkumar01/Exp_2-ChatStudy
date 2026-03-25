@@ -113,6 +113,8 @@ while True:
 # Close connection
 conn.close()
 server_socket.close()
+```
+```
 Client:
 import socket
 
